@@ -91,15 +91,6 @@ export class IntegerComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  // clearInputs(): void {    
-  //   this.singleValue.markAsPristine();
-  //   this.from.markAsPristine();
-  //   this.to.markAsPristine();
-  //   this.singleValueToNewNumber = null;
-  //   this.fromToNewNumber = null;
-  //   this.toToNewNumber = null;
-  // }
-
   getValues(): Integer {
     return new Integer(String(this.fromToNumber), String(this.toToNumber),
      this.intervalToString, this.values)
@@ -149,6 +140,7 @@ export class IntegerComponent implements OnInit {
     }
   }
 }
+
 function RangeValidator(
   controlName: string,
   comparingControlName: string

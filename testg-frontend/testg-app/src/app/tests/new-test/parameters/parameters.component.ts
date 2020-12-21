@@ -3,7 +3,6 @@ import { Observable, from } from 'rxjs';
 import { NewTestComponent } from '../new-test.component';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { DataServiceParameter } from 'src/app/utils/parameter_data_service';
-import { ParameterType } from './parameterType';
 import { MatDialog } from '@angular/material/dialog';
 import { IntegerComponent, Integer } from './integer/integer.component';
 import { StringComponent } from './string/string.component';
@@ -24,7 +23,6 @@ export class ParametersComponent implements OnInit {
   public parameter_unique_key: string;
   public parentRef: NewTestComponent;
 
-  // types: ParameterType[];
   types: string[] = ["Integer", "String", "Boolean"];
 
   stringValues: string[] = [];
@@ -45,14 +43,8 @@ export class ParametersComponent implements OnInit {
       name: ['', Validators.compose([Validators.required, Validators.maxLength(20)])],
       type: ['', Validators.compose([Validators.required])]
     })
-    // this._parameters_data.getTypes(); 
-    // this.pullTypesFromProvider();
     this.nameChangeEventListener();
   }
-
-  // private pullTypesFromProvider(): void {
-  //   this._parameters_data.currentTypes.subscribe(types => this.types = types);    
-  // }
 
   private nameChangeEventListener(): void {
     this.name.valueChanges

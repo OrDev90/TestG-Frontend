@@ -116,12 +116,6 @@ export class ConditionsComponent implements OnInit {
     });
   }
 
-  // private verifyConditionParameters(): void {
-  //   this.conditionsComponentRef.forEach((componentRef) => {
-  //     componentRef.instance.verifyConditionParameters();
-  //   });
-  // }
-
   updateStringsConditionsList(): void {
     this.previous = this._parameters_data.getPrevious();
     this.next = this._parameters_data.getNext();
@@ -160,23 +154,3 @@ export class ConditionsComponent implements OnInit {
     this._conditions_data.setConditionsList(this.conditionsComponentRef);
   }
 }
-
-
-/*
-  2) Validate the fields of new conditions when generating the tests.
-
-  3) Validate all parameters and condition, make sure there are no duplicates when generating the tests.
-
-  4) When generating the tests, make sure to validate all parameters and conditions.
-
-  5) Complete the UI design for the conditions page in laptop and in large pc screen.
-
-  6) Add option to export tests to excel.
-
-  7) When adding new tests to UI, make sure to update to amount of tests for the relevant project.
-*/
-
-/*  CLEAN THE CODE, ADD TYPES TO METHODS AND VARIABLES,
-    ADD PRIVATE/PROTECTED/PUBLIC TO ALL METHODS AND VARIABLES,
-    DELETE ANY IRRELEVANT COMMENTS,
-    DELETE INVALID IMPORTS  */

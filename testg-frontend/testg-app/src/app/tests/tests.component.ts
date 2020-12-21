@@ -42,7 +42,6 @@ export class TestsComponent implements OnInit {
     this._projects_data.currentProject.subscribe(project => this.project = project);
   }
 
-
   getTests(): void {
     this._tests_data.getTestsByProjectId();
   }

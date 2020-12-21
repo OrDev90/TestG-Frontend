@@ -21,9 +21,6 @@ export class NewConditionComponent implements OnInit {
   public firstParameters: LocalParameter[] = [];
   public secondParameters: LocalParameter[] = [];
 
-  // public illegelFirstValue: string;
-  // public illegelSecondValue: string;
-
   public firstValues: string[] = [];
   public secondValues: string[] = [];
 
@@ -33,7 +30,6 @@ export class NewConditionComponent implements OnInit {
   public firstName: string;
   public secondName: string;
 
-  // conditions: ConditionType[];
   conditions: string[] = ["When", "When Not"];
 
   integerArithmetics: string[] = ["Equal", "Greater Than", "Less Than", "Not Equal"];
@@ -45,8 +41,6 @@ export class NewConditionComponent implements OnInit {
   constructor(private _fb: FormBuilder, private _conditions_data: DataServiceCondition) { }
 
   ngOnInit(): void {
-    // this._conditions_data.getConditions(); 
-    // this.pullConditionsFromProvider();
     this.myForm = this._fb.group({
       firstParameter: ['', Validators.compose([Validators.required])],
       secondParameter: ['', Validators.compose([Validators.required])],
@@ -59,19 +53,6 @@ export class NewConditionComponent implements OnInit {
     this.firstParameters = this.parentRef.parameters;
     this.secondParameters = this.parentRef.parameters;
   }
-
-  // private pullConditionsFromProvider(): void {
-  //   this._conditions_data.currentConditions.subscribe(conditions => this.conditions = conditions);    
-  // }
-
-  // verifyConditionParameters(): void {
-    // this.firstParameters = this.parameters.filter(
-    //   parameter => parameter.name !== this.illegelFirstValue
-    // );
-    // this.secondParameters = this.parameters.filter(
-    //   parameter => parameter.name !== this.illegelSecondValue
-    // );
-  // }
 
   get condition(): AbstractControl {
     return this.myForm.get('condition');
@@ -156,11 +137,6 @@ export class NewConditionComponent implements OnInit {
   set secondValueNameToNewString(secondValue: string) {    
     this.secondValue.setValue(secondValue);
   }
-
-  // removeItem(position: string, parameterName: string): void {
-  //   this.filterParameter(position, parameterName);
-  //   this.setValues(position, parameterName);
-  // }
 
   public filterParameter(position: string, parameterName: string): void {
     if(position === 'first') {
@@ -254,36 +230,6 @@ export class NewConditionComponent implements OnInit {
   removeCondition() {
     this.parentRef.removeCondition(this.condition_unique_key);
   }
-
-  // updateParameterNames(previous: string, next: string) {    
-  //   for(let i = 0 ; i < this.parameters.length ; i++) {
-  //     if(this.parameters[i].name === previous) {
-  //       this.parameters[i].name = next;        
-  //       break;
-  //     }
-  //   }
-  //   if(this.firstParameterNameToString === previous) {
-  //     this.firstParameterNameToNewString = next;
-  //     for(let i = 0 ; i < this.firstParameters.length ; i++) {
-  //       if(this.firstParameters[i].name === previous) {
-  //         this.firstParameters[i].name = next;
-  //         this.firstValues = this.firstParameters[i].values;
-  //         break;
-  //       }
-  //     }
-      
-  //   }    
-  //   if(this.secondParameterNameToString === previous) {
-  //     this.secondParameterNameToNewString = next;
-  //     for(let i = 0 ; i < this.secondParameters.length ; i++) {
-  //       if(this.secondParameters[i].name === previous) {
-  //         this.secondParameters[i].name = next;
-  //         this.secondValues = this.secondParameters[i].values;
-  //         break;
-  //       }
-  //     }
-  //   }    
-  // }
 
   updateConditionByParameterName(previous: string, next: string) {
     if(this.firstName === previous) {

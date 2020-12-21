@@ -1,12 +1,11 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable } from 'rxjs';
-import { HttpService } from '../http.service';
 import { ParameterType } from '../tests/new-test/parameters/parameterType';
 
 @Injectable()
 export class DataServiceParameter {
 
-    constructor(private _http: HttpService) {}
+    constructor() {}
 
     public allTypes: ParameterType[] = [];
     private types = new BehaviorSubject<ParameterType[]>(null);
@@ -26,13 +25,6 @@ export class DataServiceParameter {
 
     private parameter_name = new BehaviorSubject<string>("");
     current_parameter_name = this.parameter_name.asObservable();
-
-    // getTypes() {
-    //     this._http.getParameterTypes().subscribe(data => {
-    //         this.types.next(data);
-    //         this.allTypes = data;
-    //     });
-    // }
 
     setParameterType(type: string): void {
         this.parameter_type.next(type);
