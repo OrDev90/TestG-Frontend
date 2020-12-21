@@ -1,0 +1,104 @@
+<div class="conditions" [formGroup]="myForm">
+    <mat-grid-list cols="12" rowHeight="10em">
+        <mat-grid-tile [colspan]="11" class="parameter">
+            <div>
+                <mat-form-field appearance="fill">
+                    <mat-label>Parameter</mat-label>
+                    <mat-select formControlName="firstParameter">
+                        <mat-option *ngFor="let parameter of firstParameters" [value]="parameter.name"
+                         (click)="filterParameter('first', parameter.name)"
+                          (click)="setValues('first', parameter.name)"
+                           (click)="setType('first', parameter.name)"
+                            (click)="setName('first', parameter.name)">
+                            {{parameter.name}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="firstParameter.invalid">You must select a parameter</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="valueBar"></div>
+            <div>
+                <mat-form-field appearance="fill">
+                    <mat-label>Arithmetic Sign</mat-label>
+                    <mat-select formControlName="firstArithmetic">
+                        <mat-option *ngFor="let arithmetic of firstArithmetics" [value]="arithmetic">
+                            {{arithmetic}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="firstArithmetic.invalid">You must select a sign</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="valueBar"></div>
+            <div>
+                <mat-form-field appearance="fill">
+                    <mat-label>Value</mat-label>
+                    <mat-select formControlName="firstValue">
+                        <mat-option *ngFor="let value of firstValues" [value]="value">
+                            {{value}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="firstValue.invalid">You must select a value</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="conditionBar"></div>
+            <div>
+                <mat-form-field appearance="fill">
+                    <mat-label>Condition</mat-label>
+                    <mat-select formControlName="condition">
+                      <mat-option *ngFor="let conditionType of conditions" [value]="conditionType">
+                        {{conditionType}}
+                      </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="condition.invalid">
+                      Please enter a condition
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="conditionBar"></div>
+            <div>
+                <mat-form-field appearance="fill">
+                    <mat-label>Parameter</mat-label>
+                    <mat-select formControlName="secondParameter">
+                        <mat-option *ngFor="let parameter of secondParameters" [value]="parameter.name"
+                         (click)="filterParameter('second', parameter.name)"
+                          (click)="setValues('second', parameter.name)"
+                           (click)="setType('second', parameter.name)"
+                            (click)="setName('second', parameter.name)">
+                            {{parameter.name}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="secondParameter.invalid">You must select a parameter</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="valueBar"></div>
+            <div>
+                <mat-form-field appearance="fill">
+                    <mat-label>Arithmetic Sign</mat-label>
+                    <mat-select formControlName="secondArithmetic">
+                        <mat-option *ngFor="let arithmetic of secondArithmetics" [value]="arithmetic">
+                            {{arithmetic}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="secondArithmetic.invalid">You must select a sign</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="valueBar"></div>
+            <div>
+                <mat-form-field appearance="fill">
+                    <mat-label>Value</mat-label>
+                    <mat-select formControlName="secondValue">
+                        <mat-option *ngFor="let value of secondValues" [value]="value">
+                            {{value}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="secondValue.invalid">You must select a value</mat-error>
+                </mat-form-field>
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1">
+            <mat-icon class="icon" matTooltip="Delete Condition" (click)="removeCondition()">delete_forever</mat-icon>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>
+
+

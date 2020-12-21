@@ -1,0 +1,155 @@
+<mat-tab-group mat-align-tabs="start" class="new_tests_menu" dynamicHeight="true" (click)="validateParameters($event)">
+  <mat-tab label="Parameters">
+    <mat-grid-list cols="1" rowHeight="4em" class="header_container">
+      <mat-grid-tile [colspan]="1">
+        <div class="headerName">
+          <h1>Parameters</h1>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+    <mat-divider></mat-divider>
+    <div [formGroup]="myForm">
+      <mat-grid-list cols="2" rowHeight="6em">
+        <mat-grid-tile [colspan]="1">
+          <mat-form-field appearance="fill">
+            <mat-label>Select Project</mat-label>
+              <mat-select formControlName="project_name">
+                <mat-option *ngFor="let project of projects" (click)="add_project_id(project.id)" [value]="project.name">
+                  {{project.name}}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="project_name.invalid">You must select a project</mat-error>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1">
+          <div class="add_icon_container">
+            <mat-icon class="add_icon" matTooltip="Add Parameter" (click)="createParameter()">add</mat-icon>
+          </div>
+        </mat-grid-tile>
+      </mat-grid-list>
+      <mat-divider></mat-divider>
+      <div [ngClass]="{'hideElement' : parametersComponentRef.length === 0}">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Type</th>
+              <th>Notes</th>
+              <th>Values</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+      <div>
+      <ng-template #parametersViewContainerRef></ng-template>
+      </div>
+    </div>
+  </mat-tab>
+  <mat-tab label="Conditions">
+    <mat-grid-list cols="1" rowHeight="4em" class="header_container">
+      <mat-grid-tile [colspan]="1">
+        <div class="headerName">
+          <h1>Conditions</h1>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+    <mat-divider></mat-divider>
+    <mat-grid-list cols="1" rowHeight="6em">
+      <mat-grid-tile [colspan]="1">
+        <div class="add_icon_container">
+          <mat-icon matTooltip="Add Condition" (click)="createCondition()" [ngClass]="{'disabled_icon' : isNoParameters() || isOneParameter(), 'add_icon' : !isNoParameters() && !isOneParameter() }">add</mat-icon>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+    <mat-divider></mat-divider>
+    <div>
+      <div class="parameters-container" [ngClass]="{'hideElement' : isNoParameters() || isOneParameter() }">
+        <h3>Parameters</h3>
+        <mat-divider></mat-divider>
+        <div class="parameters-list">
+          <div class="parameter-box" *ngFor="let parameter of parameters">
+            {{parameter.name}}
+          </div>
+        </div>
+      </div>
+      <div class="conditions-container">
+        <app-conditions [parameters]='parameters'></app-conditions>
+      </div>
+      <div [ngClass]="{'hideElement' : !isNoParameters() || isOneParameter()}">
+        <mat-grid-list cols="1" rowHeight="4em">
+          <mat-grid-tile [colspan]="1">
+            <h3>No parameters were configured</h3>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </div>
+      <div [ngClass]="{'hideElement' : isNoParameters() || !isOneParameter()}">
+        <mat-grid-list cols="1" rowHeight="4em">
+          <mat-grid-tile [colspan]="1">
+            <h3>There is only a single parameter defined</h3>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </div>
+    </div>
+  </mat-tab>
+  <mat-tab label="Generate">
+    <mat-grid-list cols="1" rowHeight="4em" class="header_container">
+      <mat-grid-tile [colspan]="1">
+        <div class="headerName">
+          <h1>Generate</h1>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+    <mat-divider></mat-divider>
+    <mat-grid-list cols="1" rowHeight="6em">
+      <mat-grid-tile [colspan]="1">
+        <button mat-raised-button color="primary" (click)="createNewInputField()" class="generateButton" [disabled]="isTwoOrMoreParameters()">Generate Tests</button>
+      </mat-grid-tile>
+    </mat-grid-list>
+    <mat-divider></mat-divider>
+    <div class="spinner" [ngClass]="{'hideElement' : isButtonClicked === false || isResults === true}">
+      <mat-spinner></mat-spinner>      
+    </div>
+    <div class="sub-header" [ngClass]="{'hideElement' : isResults === false}">
+      <h4>Results</h4>
+    </div>
+    <div class="test_headers" [ngClass]="{'hideElement' : isResults === false}">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Combinations</th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+    <div *ngIf="tests" class="tests_data" [ngClass]="{'hideElement' : isResults === false}">
+      <div class="listContainer" *ngFor="let test of tests">
+        <table>
+          <tbody>
+            <tr class="table_row">
+              <td><strong>{{test.name}}</strong></td>
+              <td>{{test.type}}</td>
+              <td>
+                <span *ngIf="test.combinations">
+                  <span *ngFor="let combination of test.combinations">
+                    <br><span><b>Variable:</b> {{combination.parameterName}}</span><br>
+                    <span><b>Variable Type:</b> {{combination.parameterType}}</span><br>
+                    <span><b>Value:</b> {{combination.parameterValue}}</span><br><br>
+                  </span>
+                </span>
+              </td>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div [ngClass]="{'hideElement' : isButtonClicked === true || isResults === true}">
+      <mat-grid-list cols="1" rowHeight="6em">
+        <mat-grid-tile [colspan]="1">
+          <h3>There are no available results</h3>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
+  </mat-tab>
+</mat-tab-group>

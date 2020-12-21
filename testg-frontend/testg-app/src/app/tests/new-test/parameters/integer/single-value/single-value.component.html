@@ -1,0 +1,32 @@
+<div class="single_value_container" [formGroup]="myForm">
+    <h3>Add Specific Value:</h3>
+    <div class="input_field">
+        <mat-form-field appearance="fill">
+            <mat-label>Value</mat-label>
+            <input matInput formControlName="singleValue" autocomplete="off">
+            <mat-error *ngIf="singleValue.errors?.required">
+                Please enter a single value
+            </mat-error>
+            <mat-error *ngIf="singleValue.errors?.pattern">
+                Please enter a number
+            </mat-error>
+            <mat-error *ngIf="singleValue.errors?.min">
+                Please enter a value greater then the minimum range
+            </mat-error>
+            <mat-error *ngIf="singleValue.errors?.max">
+                Please enter a value less then the maximum range
+            </mat-error>
+            <button class="clear_button" mat-button *ngIf="singleValueToString" matSuffix mat-icon-button aria-label="Clear" (click)="singleValueToNewString = ''">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+    </div>
+    <mat-grid-list cols="2" rowHeight="3em">
+        <mat-grid-tile class="input_button">
+            <button mat-raised-button color="primary" (click)="closeDialog()">Cancel</button>
+        </mat-grid-tile>
+        <mat-grid-tile class="input_button">
+            <button mat-raised-button color="primary" [mat-dialog-close]="singleValueToString" [disabled]="myForm.invalid">Add Value</button>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>

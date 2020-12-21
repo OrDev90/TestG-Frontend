@@ -1,0 +1,97 @@
+<div class="integer_value_container" [formGroup]="myForm">
+    <h3>Add New Integer:</h3>
+    <mat-grid-list cols="9" rowHeight="8em">
+        <mat-grid-tile [colspan]="4">
+            <div class="from input_field">
+                <mat-form-field appearance="fill">
+                    <mat-label >From</mat-label>
+                    <input matInput formControlName="from" autocomplete="off" >
+                    <mat-error *ngIf="from.errors?.required">
+                        Please enter a starting value
+                    </mat-error>
+                    <mat-error *ngIf="from.errors?.pattern">
+                        Please enter a number
+                    </mat-error>
+                    <mat-error *ngIf="from.errors?.range">
+                        From value cannot be greater than to field
+                    </mat-error>
+                    <mat-error *ngIf="to.errors?.same">
+                        From value cannot be equal to to value field
+                    </mat-error>
+                    <button class="clear_button" mat-button *ngIf="fromToNumber !== null" matSuffix mat-icon-button aria-label="Clear" (click)="fromToNewNumber = null">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </mat-form-field>
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1">
+            <div class="hyphen">
+                <h5>-</h5>
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="4">
+            <div class="to input_field">
+                <mat-form-field appearance="fill">
+                    <mat-label >To</mat-label>
+                    <input matInput formControlName="to" autocomplete="off">
+                    <mat-error *ngIf="to.errors?.required">
+                        Please enter an ending value
+                    </mat-error>
+                    <mat-error *ngIf="to.errors?.pattern">
+                        Please enter a number
+                    </mat-error>
+                    <mat-error *ngIf="to.errors?.range">
+                        To value cannot be smaller than from field
+                    </mat-error>
+                    <mat-error *ngIf="to.errors?.same">
+                        To value cannot be equal to from field
+                    </mat-error>
+                    <button class="clear_button" mat-button *ngIf="toToNumber !== null" matSuffix mat-icon-button aria-label="Clear" (click)="toToNewNumber = null">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </mat-form-field>
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+    <mat-grid-list cols="2" rowHeight="6em">
+        <mat-grid-tile [colspan]="1">
+            <h4>Range Interval:</h4>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1">
+            <div class="select_field">
+                <mat-form-field appearance="fill">
+                  <mat-label >Interval</mat-label>
+                  <mat-select formControlName="interval">
+                    <mat-option *ngFor="let interval of intervals" [value]="interval">
+                      {{interval}}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="interval.invalid">
+                    Please enter a interval
+                  </mat-error>
+                </mat-form-field>
+              </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+    <mat-grid-list cols="4" rowHeight="8em">
+        <mat-grid-tile [colspan]="2">
+            <h4>Add Specific Value:</h4>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1">
+            <mat-icon class="add_icon_single" (click)="openSingleValueDialog()" matTooltip="Add Single Value" [ngClass]="{'add_icon_single' : !isLimitValues && !myForm.invalid, 'add_icon_disabled' : isLimitValues || myForm.invalid}">add</mat-icon>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1">
+            <div *ngIf="singleValues" class="single_values_field">
+                <span *ngFor="let singleValue of singleValues">{{singleValue}}<br></span>
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+    <mat-grid-list cols="2" rowHeight="3em">
+        <mat-grid-tile class="input_button">
+            <button mat-raised-button color="primary" (click)="closeDialog()">Cancel</button>
+        </mat-grid-tile>
+        <mat-grid-tile class="input_button">
+            <button mat-raised-button color="primary" [mat-dialog-close]="getValues()" [disabled]="myForm.invalid" (click)="generateRangeValues()">Add Value</button>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>

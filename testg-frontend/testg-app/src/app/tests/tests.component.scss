@@ -1,0 +1,49 @@
+$icon: rgb(60, 125, 230);
+
+.tests_menu {
+    width: 95%;
+    margin: 4em auto 0 auto;
+    mat-form-field {
+        margin-top: 2em;
+    }
+}
+.add_icon_container {
+    margin-top: 2em;
+    .add_icon {
+        font-size: 48px;
+        color: $icon;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+.sub-header {
+    width: 95%;
+    margin: 0 auto 1em auto;
+}
+
+.project_headers, .projects_data {
+    th, td {
+        width: 60px;
+        &:nth-of-type(3) {
+            width: 160px;
+        }
+        &:last-of-type {
+            width: 60px;
+        }
+    }
+}
+
+.test_headers, .tests_data {
+    th, td {
+        width: 60px;
+        &:nth-of-type(3) {
+            width: 160px;
+        }
+        &:last-of-type {
+            width: 60px;
+        }
+    }
+}
+
+

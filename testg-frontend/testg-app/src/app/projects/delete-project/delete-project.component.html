@@ -1,0 +1,13 @@
+<div class="delete-project-container">
+    <h3>Delete Project:</h3>
+    <h6>Are you sure you wish to delete this project?</h6>
+    <h6 class="warn">Note that deleting a project would also delete its related tests!</h6>
+    <mat-grid-list cols="2" rowHeight="3em">
+        <mat-grid-tile class="input_button">
+            <button mat-raised-button color="primary" (click)="closeDialog()">Cancel</button>
+        </mat-grid-tile>
+        <mat-grid-tile class="input_button">
+            <button mat-raised-button color="warn" (click)='deleteProject()'>Delete</button>
+        </mat-grid-tile>
+      </mat-grid-list>
+</div>

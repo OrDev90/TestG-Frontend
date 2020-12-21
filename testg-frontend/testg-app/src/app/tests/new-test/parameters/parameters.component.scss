@@ -1,0 +1,122 @@
+$field: rgb(63, 81, 181, 0.4);
+$icon: rgb(40, 84, 153);
+$disabled_icon: rgba(40, 84, 153, .4);
+
+::ng-deep .mat-divider {
+    width: 100%;
+    margin: .6em auto !important;
+}
+
+.table_row {
+    &:hover {
+        .icon {
+            animation: makeVisible;
+            animation-duration: .5s;
+            visibility: visible;
+            animation-fill-mode: forwards;
+        }
+        .disabled_icon {
+            animation: makeVisible;
+            animation-duration: .5s;
+            visibility: visible;
+            animation-fill-mode: forwards;
+        }
+    }
+    td {
+        &:nth-of-type(1) {
+            width: 120px !important;
+        }
+        &:nth-of-type(2) {
+            width: 120px !important;
+        }
+        &:nth-of-type(3) {
+            width: 140px !important;
+        }
+        &:nth-of-type(4) {
+            width: 120px !important;
+        }
+        &:last-of-type {
+            width: 140px !important;
+        }
+    }
+}
+@keyframes makeVisible {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 100;
+    }
+}
+.input_field {
+    margin: unset !important;
+    width: 90% !important;
+    mat-form-field {
+        padding-top: 1.34375em;
+        width: 100%;
+        font-size: 1em !important;
+        input {
+            color: black !important;
+        }
+    }
+}
+.select_field {
+    width: 90% !important;
+    mat-form-field {
+        padding-top: 1.34375em;
+        width: 100%;
+        font-size: 1em !important;
+    }
+}
+
+.notes_field {
+    margin: unset !important;
+    width: 90% !important;
+    font-size: 1em !important;
+}
+
+.values_field {
+    margin: unset !important;
+    width: 90% !important;
+    font-size: 1em !important;
+}
+
+.icons_field {
+    margin: unset !important;
+    width: 90% !important;
+}
+
+.mat-form-field ::ng-deep .mat-form-field-flex {
+    background-color: $field;
+}
+
+.icon {
+    opacity: 0;
+    &:first-of-type {
+        margin: 0 .3em 0 0 !important;
+    }
+    margin: auto .3em;
+    &:last-of-type {
+        margin: 0 0 0 .3em !important;
+    }
+    font-size: 34px;
+    color: $icon;
+    &:hover {
+        cursor: pointer;
+    }
+}
+.disabled_icon {
+    opacity: 0;
+    &:first-of-type {
+        margin: 0 .3em 0 0 !important;
+    }
+    margin: auto .3em;
+    &:last-of-type {
+        margin: 0 0 0 .3em !important;
+    }
+    font-size: 34px;
+    color: $disabled_icon;
+    &:hover {
+        cursor: default;
+    }
+}

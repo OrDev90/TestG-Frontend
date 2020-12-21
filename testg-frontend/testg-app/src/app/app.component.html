@@ -1,0 +1,16 @@
+<mat-grid-list cols="4" rowHeight="5em" class="header">
+  <mat-grid-tile [colspan]="1">
+    <div>
+      <a mat-button [routerLink]="links[0].route" (click)="activateLink(links[0].title)" class="app-logo">TestG</a>
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="3" class="app-navigation">
+    <nav mat-tab-nav-bar>
+      <a mat-tab-link *ngFor="let link of links"
+         (click)="activateLink(link.title)"
+         [active]="activeLink === link.title" 
+         [routerLink]="link.route" [style.opacity]="activeLink === link.title ? '1' : null"> {{link.title}} </a>
+    </nav>
+  </mat-grid-tile>
+</mat-grid-list>
+<router-outlet></router-outlet>

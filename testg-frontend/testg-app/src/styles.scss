@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap');
+@import '~bootstrap/scss/bootstrap';
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import 'https://fonts.googleapis.com/icon?family=Material+Icons';
+
+
+$primary: rgb(50, 80, 130);
+$secondary: rgb(200, 210, 220);
+$table: rgb(133, 170, 233);
+$table_header: rgb(222, 225, 228);
+$text: rgb(70, 80, 90);
+$primary_hover: rgb(105, 118, 187);
+
+body {
+    .mat-divider {
+        margin: 1.2em 0;
+    }
+    margin: 0;
+    padding: 0;
+    font-family: 'Quicksand', 'sans-serif';
+    background-color: $secondary;
+    .header {
+        background: $primary;
+        .app-logo {
+            font-family: 'Quicksand', 'sans-serif' !important;
+            font-size: 2.4em;
+            text-decoration: none;
+            color: $secondary;
+        }
+        .app-navigation {
+            nav {
+                margin-left: 50%;
+            }
+            a {
+                font-family: 'Quicksand', 'sans-serif' !important;
+                font-size: 1.4em;
+                color: $secondary;
+                text-decoration: none;
+                &:hover {
+                    opacity: 1;
+                }
+            }
+            .mat-ink-bar {
+                background-color: $secondary;
+            }
+        }
+    }
+    .header_container {
+        margin-top: 1em;
+        height: calc(1em + 0px + 0px) !important;
+        .headerName {
+            margin-right: 60%;
+            h1 {
+                font-size: 2.5em;
+            }
+        }
+    }
+
+    .hideElement {
+        display: none;
+    }
+
+    table {
+        margin: auto;
+        border-collapse: collapse;
+        border-spacing: 0;
+        table-layout: fixed;
+        width: 90%;
+        box-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12);
+    }
+    th {
+        background-color: $table_header;
+        color: $text;
+        font-size: 18px;
+        overflow: hidden;
+        padding: 5px 0 5px 5px;
+        word-break: normal;
+    }
+    tr {
+        background-color: $table;
+        color: $text;
+        text-align: left;
+        font-size: 16px;
+    }
+    td {
+        overflow: hidden;
+        padding: 5px 0 5px 5px;
+        word-break: break-word;
+    }
+    
+    .listContainer {
+        margin-bottom: 10px;
+    }
+
+    .input_field {
+        &:hover {
+            .clear_button {
+                animation: makeVisible;
+                animation-duration: .5s;
+                visibility: visible;
+                animation-fill-mode: forwards;
+            }
+        }
+        width: 90%;
+        margin: 0 auto 1em auto;
+        mat-form-field {
+            width: 100%;
+        }
+        .clear_button {
+            visibility: hidden;
+            opacity: 0;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+    .input_button {
+        button {
+            width: 10em;
+            height: 10em;
+            box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+            &:hover {
+                background-color: $primary_hover;
+            }
+            outline: none;
+            font-size: 1.1em;
+        }
+    }
+    button, mat-form-field, mat-option, mat-select, mat-radio-button {
+        font-family: 'Quicksand', 'sans-serif' !important;
+    }
+}

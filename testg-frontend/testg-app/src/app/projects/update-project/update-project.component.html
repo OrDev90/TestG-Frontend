@@ -1,0 +1,56 @@
+<div class="update_project_container" [formGroup]="myForm">
+    <h3>Update Project:</h3>
+    <div class="input_field">
+        <mat-form-field appearance="fill">
+            <mat-label >Name</mat-label>
+            <input matInput formControlName="name" autocomplete="off">
+            <mat-error *ngIf="name.errors?.required">
+                Name field is mandatory
+            </mat-error>
+            <mat-error *ngIf="name.errors?.maxlength">
+                Name is limited to 20 characters
+            </mat-error>
+            <button class="clear_button" mat-button *ngIf="nameToString" matSuffix mat-icon-button aria-label="Clear" (click)="nameToNewString = ''">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+    </div>
+    <div class="input_field">
+        <mat-form-field appearance="fill">
+            <mat-label>Type</mat-label>
+            <input matInput formControlName="type" autocomplete="off">
+            <mat-error *ngIf="type.errors?.required">
+                Type field is mandatory
+            </mat-error>
+            <mat-error *ngIf="type.errors?.maxlength">
+                Type is limited to 20 characters
+            </mat-error>
+            <button class="clear_button" mat-button *ngIf="typeToString" matSuffix mat-icon-button aria-label="Clear" (click)="typeToNewString = ''">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+    </div>
+    <div class="input_field">
+        <mat-form-field appearance="fill">
+            <mat-label>Desription</mat-label>
+            <textarea matInput formControlName="description" autocomplete="off"></textarea>
+            <mat-error *ngIf="description.errors?.required">
+                Description field is mandatory
+            </mat-error>
+            <mat-error *ngIf="description.errors?.maxlength">
+                Description is limited to 50 characters
+            </mat-error>
+            <button class="clear_button" mat-button *ngIf="descriptionToString" matSuffix mat-icon-button aria-label="Clear" (click)="descriptionToNewString = ''">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+    </div>
+    <mat-grid-list cols="2" rowHeight="3em">
+        <mat-grid-tile class="input_button">
+            <button mat-raised-button color="primary" (click)="closeDialog()">Cancel</button>
+        </mat-grid-tile>
+        <mat-grid-tile class="input_button">
+            <button mat-raised-button color="primary" (click)='updateProject()' [disabled]="myForm.invalid">Update Project</button>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>

@@ -1,0 +1,52 @@
+$add_icon_color: #3c7de6;
+$disabled_icon: rgba(40, 84, 153, .4);
+
+.integer_value_container {
+    width: 600px;
+    mat-grid-list {
+        &:nth-of-type(4) {
+            margin-top: 1em;
+        }
+    }
+    .from, .to, .singleValue {
+        width: 80% !important;
+        mat-form-field {
+            padding-top: 1.34375em;
+            width: 100%;
+            font-size: 1em !important;
+        }
+    }
+    .hyphen {
+        text-align: center;
+        width: 70% !important;
+    }
+    .select_field {
+        width: 50% !important;
+        mat-form-field {
+            padding-top: 1.34375em;
+            width: 100%;
+            font-size: 1em !important;
+        }
+    }
+    .add_icon_single {
+        margin-bottom: 20%;
+        color: $add_icon_color;
+        font-size: 48px;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+    .add_icon_disabled {
+        &:hover {
+            cursor: default;
+        }
+        margin-bottom: 20%;
+        color: $disabled_icon;
+        font-size: 48px;
+    }
+    .single_values_field {
+        margin: unset !important;
+        width: 90% !important;
+        font-size: 1em !important;
+    }
+}

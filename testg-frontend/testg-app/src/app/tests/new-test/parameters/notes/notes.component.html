@@ -1,0 +1,26 @@
+<div class="notes_container" [formGroup]="myForm">
+    <h3>Add Notes:</h3>
+    <div class="input_field">
+        <mat-form-field appearance="fill">
+            <mat-label>Notes</mat-label>
+            <textarea matInput formControlName="notes" autocomplete="off"></textarea>
+            <mat-error *ngIf="notes.errors?.required">
+                Please enter notes
+            </mat-error>
+            <mat-error *ngIf="notes.errors?.maxlength">
+                Notes are limited to 120 characters
+            </mat-error>
+            <button class="clear_button" mat-button *ngIf="notesToString" matSuffix mat-icon-button aria-label="Clear" (click)="notesToNewString = ''">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+    </div>
+    <mat-grid-list cols="2" rowHeight="3em">
+        <mat-grid-tile class="input_button">
+            <button mat-raised-button color="primary" (click)="closeDialog()">Cancel</button>
+        </mat-grid-tile>
+        <mat-grid-tile class="input_button">
+            <button mat-raised-button color="primary" [mat-dialog-close]="notesToString" [disabled]="myForm.invalid">Add Notes</button>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>

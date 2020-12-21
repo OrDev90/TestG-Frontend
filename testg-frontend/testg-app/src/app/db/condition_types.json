@@ -1,0 +1,10 @@
+{
+    "condition_types": [
+        {
+            "name": "When"
+        },
+        {
+            "name": "When Not"
+        }
+    ]
+}

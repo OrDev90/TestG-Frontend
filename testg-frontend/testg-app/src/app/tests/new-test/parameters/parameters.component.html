@@ -1,0 +1,91 @@
+<div class="listContainer">
+  <table>
+    <tbody>
+      <tr class="table_row" [formGroup]="myForm">
+        <td>
+          <mat-grid-list cols="1" rowHeight="8em">
+            <mat-grid-tile [colspan]="1">
+              <div class="input_field">
+                <mat-form-field appearance="fill">
+                  <mat-label >Name</mat-label>
+                  <input matInput formControlName="name" autocomplete="off">
+                  <mat-error *ngIf="name.errors?.required">
+                    Please enter a name
+                  </mat-error>
+                  <mat-error *ngIf="name.errors?.maxlength">
+                    Name is limited to 20 characters
+                  </mat-error>
+                  <button class="clear_button" mat-button *ngIf="nameToString" matSuffix mat-icon-button aria-label="Clear" (click)="nameToNewString = ''">
+                      <mat-icon>close</mat-icon>
+                  </button>
+                </mat-form-field>
+              </div>
+            </mat-grid-tile>
+          </mat-grid-list>
+        </td>
+        <td>
+          <mat-grid-list cols="1" rowHeight="8em">
+            <mat-grid-tile [colspan]="1">
+              <div class="select_field">
+                <mat-form-field appearance="fill">
+                  <mat-label >Type</mat-label>
+                  <mat-select formControlName="type">
+                    <mat-option *ngFor="let parameterType of types" [value]="parameterType">
+                      {{parameterType}}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="type.invalid">
+                    Please enter a type
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </mat-grid-tile>
+          </mat-grid-list>
+        </td>
+        <td>
+          <mat-grid-list cols="1" rowHeight="8em">
+            <mat-grid-tile [colspan]="1">
+              <div *ngIf="notes" class="notes_field">{{notes}}</div>
+            </mat-grid-tile>
+          </mat-grid-list>
+        </td>
+        <td>
+          <div *ngIf="stringValues" class="values_field" [ngClass]="{'hideElement' : stringValues && integerValues === null && !booleanValues}">
+            <span *ngFor="let stringValue of stringValues">{{stringValue}}<br></span>
+          </div>
+          <div *ngIf="integerValues" class="values_field" [ngClass]="{'hideElement' : integerValues !== null && !stringValues && !booleanValues}">
+              <div>
+                <b>Range: </b>
+                <span>{{integerValues.from}} - {{integerValues.to}}</span><mat-divider></mat-divider>
+              </div>  
+              <div>
+                <b>Values: </b>
+                <span>|</span>
+                <span *ngFor="let integerValue of integerValues.values"> {{integerValue}} | </span><mat-divider></mat-divider>
+              </div>
+              <div>
+                <b>Interval: </b>
+                <span>{{integerValues.interval}}</span>
+              </div>
+          </div>
+          <div *ngIf="booleanValues" class="values_field" [ngClass]="{'hideElement' : booleanValues && !stringValues && integerValues === null}">
+            <span *ngFor="let booleanValue of booleanValues">{{booleanValue}}<br></span>
+          </div>
+        </td>
+        <td>
+          <mat-grid-list cols="1" rowHeight="8em">
+            <mat-grid-tile [colspan]="1">
+              <div class="icons_field">
+                <mat-icon class="icon" matTooltip="Add Notes" (click)="addNotes()">note_add</mat-icon>
+                <mat-icon matTooltip="Add Value" (click)="addValue()" [ngClass]="{'icon' : !isLimitInteger && !isLimitString && !isLimitBoolean, 'disabled_icon' : isLimitInteger || isLimitString || isLimitBoolean}">add_box</mat-icon>
+                <mat-icon class="icon" matTooltip="Delete Parameter" (click)="removeParameter()">delete_forever</mat-icon>
+              </div>
+            </mat-grid-tile>
+          </mat-grid-list>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+

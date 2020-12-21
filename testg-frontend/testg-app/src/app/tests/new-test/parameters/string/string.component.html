@@ -1,0 +1,29 @@
+<div class="string_value_container" [formGroup]="myForm">
+    <h3>Add New String:</h3>
+    <div class="input_field">
+        <mat-form-field appearance="fill">
+            <mat-label >String</mat-label>
+            <input matInput formControlName="string" autocomplete="off">
+            <mat-error *ngIf="string.errors?.required">
+                Please enter a string
+            </mat-error>
+            <mat-error *ngIf="string.errors?.pattern">
+                Please enter a valid string
+            </mat-error>
+            <mat-error *ngIf="string.errors?.maxlength">
+                String is limited to 50 characters
+            </mat-error>
+            <button class="clear_button" mat-button *ngIf="stringToString" matSuffix mat-icon-button aria-label="Clear" (click)="stringToNewString = ''">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+    </div>
+    <mat-grid-list cols="2" rowHeight="3em">
+        <mat-grid-tile class="input_button">
+            <button mat-raised-button color="primary" (click)="closeDialog()">Cancel</button>
+        </mat-grid-tile>
+        <mat-grid-tile class="input_button">
+            <button mat-raised-button color="primary" [mat-dialog-close]="getValues()" [disabled]="myForm.invalid">Add Value</button>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>

@@ -1,0 +1,42 @@
+<mat-grid-list cols="1" rowHeight="4em" class="header_container">
+  <mat-grid-tile [colspan]="1">
+    <div class="headerName">
+      <h1>My Projects</h1>
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>
+<div class="add_icon_container">
+  <mat-icon class="add_icon" (click)="openNewProjectDialog()" matTooltip="Add Project">add</mat-icon>
+</div>
+<div class="project_headers">
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Tests</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+  </table>
+</div>
+<div *ngIf="projects" class="projects_data">
+  <div class="listContainer" *ngFor="let project of projects">
+    <table>
+      <tbody>
+        <tr class="table_row">
+          <td>{{project.name}}</td>
+          <td>{{project.type}}</td>
+          <td>{{project.description}}</td>
+          <td>{{project.existingTests}}</td>
+          <td>
+            <div class="project_icon_container">
+              <mat-icon class="project_icon" matTooltip="Edit Project" (click)="openUpdateProjectDialog(project)">create</mat-icon>
+              <mat-icon class="project_icon" matTooltip="Delete Project" (click)="openDeleteProjectDialog(project.id)">delete_forever</mat-icon>
+            </div>
+          </td>
+      </tbody>
+    </table>
+  </div>
+</div>

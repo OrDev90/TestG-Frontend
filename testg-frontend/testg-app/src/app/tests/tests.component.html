@@ -1,0 +1,95 @@
+<mat-grid-list cols="1" rowHeight="4em" class="header_container">
+  <mat-grid-tile [colspan]="1">
+    <div class="headerName">
+      <h1>My Tests</h1>
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>
+<div class="tests_menu">
+  <mat-grid-list cols="2" rowHeight="6em">
+    <mat-grid-tile [colspan]="1">
+      <mat-form-field appearance="fill">
+        <mat-label>Select Project</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let project of projects" [value]="project.name" (click)="selectProject(project)">
+            {{project.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1">
+      <div class="add_icon_container">
+        <a href="#" routerLink="/tests/new"><mat-icon class="add_icon" matTooltip="Add Tests">add</mat-icon></a>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <mat-divider></mat-divider>
+  <div class="sub-header" [ngClass]="{'hideElement' : is_project_selected === false}">
+    <h4>Project</h4>
+  </div>
+  <div [ngClass]="{'hideElement' : is_project_selected === false}" class="project_headers">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Tests</th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+  <div *ngIf="project" [ngClass]="{'hideElement' : is_project_selected === false}" class="projects_data">
+    <div class="projectsListContainer">
+      <table>
+        <tbody>
+          <tr class="table_row">
+            <td><strong>{{project.name}}</strong></td>
+            <td>{{project.type}}</td>
+            <td>{{project.existingTests}}</td>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <mat-divider [ngClass]="{'hideElement' : is_project_selected === false}"></mat-divider>
+  <div class="sub-header" [ngClass]="{'hideElement' : is_project_selected === false || hasTests === false}">
+    <h4>Tests List</h4>
+  </div>
+  <div [ngClass]="{'hideElement' : is_project_selected === false || hasTests === false}" class="test_headers">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Combinations</th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+  <div *ngIf="tests" [ngClass]="{'hideElement' : is_project_selected === false || hasTests === false}" class="tests_data">
+    <div class="listContainer" *ngFor="let test of tests">
+      <table>
+        <tbody>
+          <tr class="table_row">
+            <td><strong>{{test.name}}</strong></td>
+            <td>{{test.type}}</td>
+            <td>
+              <span *ngIf="test.combinations">
+                <span *ngFor="let combination of test.combinations">
+                  <br><span><b>Variable:</b> {{combination.parameterName}}</span><br>
+                  <span><b>Variable Type:</b> {{combination.parameterType}}</span><br>
+                  <span><b>Value:</b> {{combination.parameterValue}}</span><br><br>
+                </span>
+              </span>
+            </td>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div [ngClass]="{'hideElement' : hasTests === true}">
+    <mat-grid-list cols="1" rowHeight="6em">
+      <mat-grid-tile [colspan]="1">
+        <h4>There are no available tests for this project</h4>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+</div>

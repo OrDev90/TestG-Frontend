@@ -1,0 +1,61 @@
+$secondary: rgb(231, 231, 231);
+$icon: rgb(60, 125, 230);
+$icon_2: rgb(70, 80, 90);
+$primary: rgb(50, 80, 130);
+$button: rgb(63, 109, 189);
+$table: rgb(133, 170, 233);
+$table_header: rgb(222, 225, 228);
+$text: rgb(70, 80, 90);
+
+.add_icon_container {
+    text-align: right;
+    margin-top: 2.2em;
+    .add_icon {
+        margin-right: 12%;
+        font-size: 48px;
+        color: $icon;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+.project_icon_container {
+    .project_icon {
+        visibility: hidden;
+        opacity: 0;
+        margin: .2em .3em;
+        font-size: 26px;
+        color: $icon_2;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+.table_row {
+    &:hover {
+        .project_icon_container {
+            .project_icon {
+                animation: makeVisible;
+                animation-duration: 1s;
+                visibility: visible;
+                animation-fill-mode: forwards;
+            }
+        }
+    }
+}
+@keyframes makeVisible {
+    from {opacity: 0;}
+    to {opacity: 100;}
+}
+
+.project_headers, .projects_data {
+    th, td {
+        width: 80px;
+        &:nth-of-type(3) {
+            width: 140px;
+        }
+        &:nth-of-type(4), &:last-of-type {
+            width: 60px;
+        }
+    }
+}

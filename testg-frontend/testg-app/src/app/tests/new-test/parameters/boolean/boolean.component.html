@@ -1,0 +1,20 @@
+<div class="boolean_value_container" [formGroup]="myForm">
+    <h3>Add New Boolean:</h3>
+    <mat-grid-list cols="1" rowHeight="6em">
+        <mat-grid-tile [colspan]="1" >
+            <mat-radio-group formControlName="boolean" class="radio-group">
+                <mat-radio-button class="radio-button" *ngFor="let type of booleanTypes" [value]="type" [color]="primary" (click)="booleanToNewString = type">
+                    <h5>{{type}}</h5>
+                </mat-radio-button>
+            </mat-radio-group>
+        </mat-grid-tile>
+    </mat-grid-list>
+    <mat-grid-list cols="2" rowHeight="3em">
+        <mat-grid-tile class="input_button">
+            <button mat-raised-button color="primary" (click)="closeDialog()">Cancel</button>
+        </mat-grid-tile>
+        <mat-grid-tile class="input_button">
+            <button mat-raised-button color="primary" [mat-dialog-close]="getValues()" [disabled]="myForm.invalid">Add Value</button>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>
